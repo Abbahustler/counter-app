@@ -1,37 +1,28 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    console.log("PrevProps", prevProps);
-    console.log("prevState", prevState);
-  }
-  componentWillUnmount() {
-    console.log("Counter - Unmount");
-  }
   render() {
-    console.log("Counter -  Rendered");
     return (
-      <div>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+      <div className="container mt-1">
+        <span className={this.getBadgeClass()}>{this.formatCount()}</span>
         <button
           onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-primary btn-sm"
+          className="btn btn-secondary mb-2"
         >
           Increment
         </button>
         <button
           onClick={() => this.props.onDelete(this.props.counter.id)}
-          className="btn-sm btn m-2 btn-danger"
+          className="btn btn-danger btn-sm m-2"
         >
           Delete
         </button>
       </div>
     );
   }
-
-  getBadgeClasses() {
+  getBadgeClass() {
     let classes = "badge m-2 badge-";
-    classes += this.props.counter.value === 0 ? "warning" : "success";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
@@ -40,4 +31,5 @@ class Counter extends Component {
     return value === 0 ? "Zero" : value;
   }
 }
+
 export default Counter;
